@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchBar from "../products/SearchBar";
-import { CartIcon, SearchIcon, HeartIcon, MenuIcon } from "../shared/Icons";
+import { CartIcon, SearchIcon, HeartIcon, MenuIcon, CloseIcon } from "../shared/Icons";
 
 export default function Header() {
-    const [isSearchVisible, setIsSearchVisible] = useState(false);
-    const location = useLocation();
+    const [menuItems] = useState([
+        { name: "Home", path: "/" },
+        { name: "Admin", path: "/admin/products" },
+        { name: "Categories", path: "#" },
+    ]);
 
+    const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(true);
+
+    const [isSearchVisible, setIsSearchVisible] = useState(false);
+    
+    const location = useLocation();
     const isActive = (path: string) => {
         if (path === "/" && location.pathname === "/") return true;
         if (path !== "/" && location.pathname.startsWith(path)) return true;
@@ -18,33 +26,29 @@ export default function Header() {
             <SearchBar isVisible={isSearchVisible} setIsVisible={setIsSearchVisible} />
 
             <nav className="w-full max-w-[86rem] mx-auto grid grid-cols-3 items-center p-4">
-                <span className="cursor-pointer lg:hidden">
+                <span onClick={() => setIsMobileMenuVisible(true)} className="cursor-pointer lg:hidden">
                     <MenuIcon width={26} height={26} />
                 </span>
                 <ul className="hidden lg:flex items-center gap-8 font-medium">
-                    <li>
-                        <Link to="/" 
-                            className={`transition-colors duration-200 ${
-                                isActive("/") 
-                                    ? "text-[#44a694] font-semibold" 
-                                    : "text-gray-700 hover:text-[#44a694]"
-                            }`}
-                        >
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/products" 
-                            className={`transition-colors duration-200 ${
-                                isActive("/admin") 
-                                    ? "text-[#44a694] font-semibold" 
-                                    : "text-gray-700 hover:text-[#44a694]"
-                            }`}
-                        >
-                            Admin
-                        </Link>
-                    </li>
-                    <li className="opacity-50">Categories</li>
+                    {
+                        menuItems.map((item) => (
+                            <li key={item.name}>
+                                {item.path === "#" ? (
+                                    <span className="opacity-50">{item.name}</span>
+                                ) : (
+                                    <Link to={item.path} 
+                                        className={`transition-colors duration-200 ${
+                                            isActive(item.path) 
+                                                ? "text-[#44a694] font-semibold" 
+                                                : "text-gray-700 hover:text-[#44a694]"
+                                        }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                )}
+                            </li>
+                        ))
+                    }
                 </ul>
 
                 <div className="flex justify-center">
@@ -60,6 +64,43 @@ export default function Header() {
                     {/* <li><UserIcon /></li> */}
                 </ul>
             </nav>
+
+
+            {/* Mobile Menu Full Height */}
+            {isMobileMenuVisible && (
+                <div className="fixed inset-0 bg-white z-50 flex flex-col">
+                    
+                    <div className="p-4 flex justify-between items-center">
+                        <span className="font-bold text-lg"></span>
+                        <button onClick={() => setIsMobileMenuVisible(false)} className="text-gray-700">
+                            <CloseIcon width={24} height={24} />
+                        </button>
+                    </div>
+
+                    <ul className="flex flex-col p-4 gap-6">
+                        {
+                            menuItems.map((item) => (
+                                <li key={item.name}>
+                                    {item.path === "#" ? (
+                                        <span className="opacity-50">{item.name}</span>
+                                    ) : (
+                                        <Link to={item.path} 
+                                            className={`block text-lg ${
+                                                isActive(item.path) 
+                                                    ? "text-[#44a694] font-semibold" 
+                                                    : "text-gray-700 hover:text-[#44a694]"
+                                            }`}
+                                            onClick={() => setIsMobileMenuVisible(false)}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    )}
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            )}
         </>
     )
 }
