@@ -1,5 +1,4 @@
 import type { ProductType } from "../../types/types";
-import { BagIcon, EyeIcon, HeartIcon } from "../shared/Icons";
 
 type AdminProductCardProps = {
     product: ProductType;
@@ -13,7 +12,7 @@ export default function AdminProductCard({ product, onClick }: AdminProductCardP
 
     return (
         <div 
-            className="flex flex-col group cursor-pointer hover:shadow-lg transition-shadow duration-300"
+            className="flex flex-col group cursor-pointer transition-shadow duration-300"
             onClick={handleCardClick}
         >
             <div className="w-full h-72 bg-[#fafafa] flex justify-center items-center relative overflow-hidden">
@@ -33,7 +32,7 @@ export default function AdminProductCard({ product, onClick }: AdminProductCardP
                     }
                 </div>
 
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/5 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-lg">
                         <svg width={16} height={16} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#171717" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -43,40 +42,10 @@ export default function AdminProductCard({ product, onClick }: AdminProductCardP
                         <span className="text-sm font-medium">Edit Product</span>
                     </div>
                 </div>
-
-                <div className="absolute bottom-4 lg:-bottom-12 lg:group-hover:bottom-4 duration-500 ease-in-out flex justify-center items-center gap-2">
-                    <span 
-                        className="w-8 h-8 flex justify-center items-center rounded-full bg-white shadow-lg hover:bg-blue-500 hover:text-white transition-colors"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            // Handle individual action if needed
-                        }}
-                    >
-                        <BagIcon width={20} height={20} />
-                    </span>
-                    <span 
-                        className="w-8 h-8 flex justify-center items-center rounded-full bg-white shadow-lg hover:bg-red-500 hover:text-white transition-colors"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            // Handle individual action if needed
-                        }}
-                    >
-                        <HeartIcon width={18} height={18} />
-                    </span>
-                    <span 
-                        className="w-8 h-8 flex justify-center items-center rounded-full bg-white shadow-lg hover:bg-green-500 hover:text-white transition-colors"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            // Handle individual action if needed
-                        }}
-                    >
-                        <EyeIcon width={20} height={20} />
-                    </span>
-                </div>
             </div>
 
             <div className="mt-2">
-                <h3 className="font-medium group-hover:text-blue-600 transition-colors">{product.name}</h3>
+                <h3 className="font-medium transition-colors">{product.name}</h3>
 
                 <p className="text-gray-600 text-sm mt-0.5">
                     Category: <span className="font-medium text-[#32c6ba]">{product.category}</span>
@@ -89,10 +58,6 @@ export default function AdminProductCard({ product, onClick }: AdminProductCardP
                     {product.oldPrice > 0 && (
                         <p className="text-gray-400 line-through text-sm">${product.oldPrice}</p>
                     )}
-                </div>
-
-                <div className="mt-2 text-xs text-gray-500">
-                    ID: {product.id}
                 </div>
             </div>
         </div>
