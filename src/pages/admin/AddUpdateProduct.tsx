@@ -262,9 +262,7 @@ export function UpdateProduct({ isOpen, onClose, product, onSuccess }: UpdatePro
     };
 
     // Handle Update Product form submission
-    const handleUpdateProduct = async (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const handleUpdateProduct = async () => {
         if (!product) return;
 
         const validation = validateForm();
@@ -306,8 +304,7 @@ export function UpdateProduct({ isOpen, onClose, product, onSuccess }: UpdatePro
             <div className="w-full max-w-lg">
                 <h2 className="text-xl font-semibold mb-6 text-gray-800">Update Product</h2>
 
-                <form onSubmit={handleUpdateProduct}>
-                    <Forms.FormInput
+                <Forms.FormInput
                         label="Product Name *"
                         type="text"
                         name="name"
@@ -376,12 +373,12 @@ export function UpdateProduct({ isOpen, onClose, product, onSuccess }: UpdatePro
                         </Buttons.SecondaryButton>
 
                         <Buttons.PrimaryButton
+                        onClick={handleUpdateProduct}
                             disabled={isSubmitting || !validateForm().isValid}
                         >
                             {isSubmitting ? "Updating..." : "Update Product"}
                         </Buttons.PrimaryButton>
                     </div>
-                </form>
             </div>
         </Modal>
     );
