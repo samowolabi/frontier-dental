@@ -40,7 +40,7 @@ export default function AdminProductCard({ product, onClick, onDelete }: AdminPr
                 </div>
 
                 <div className="absolute inset-0 bg-black/5 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-3">
+                    <div className="lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-3">
                         <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors">
                             <EditIcon width={14} height={14} />
                             <span className="text-xs font-medium">Edit</span>
