@@ -1,0 +1,103 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Orabloc Articaine HCl 4%, with Epinephrine, 1:100,000, 1.7 ml, Red, 50/Pk",
+            "category": "Anesthetics",
+            "description": "Professional dental anesthetic with articaine hydrochloride 4% and epinephrine 1:100,000. Provides reliable, long-lasting local anesthesia for dental procedures. Red-coded cartridges in convenient 50-pack.",
+            "imageUrl": "/products/1.png",
+            "price": 29.99,
+            "oldPrice": 34.99,
+            "available": true,
+            "createdAt": "2025-10-15T14:30:00Z"
+        },
+        {
+            "id": 2,
+            "name": "Disposable Prophy Cups, Screw Type, Webbed, Medium Soft, 144/Pk",
+            "category": "Prophylaxis",
+            "description": "High-quality disposable prophylaxis cups with screw-type attachment. Webbed design ensures effective polishing action. Medium soft material ideal for routine cleanings. Pack of 144 cups.",
+            "imageUrl": "/products/2.png",
+            "price": 15.99,
+            "oldPrice": 18.49,
+            "available": false,
+            "createdAt": "2025-10-12T09:15:00Z"
+        },
+        {
+            "id": 3,
+            "name": "Probevac Irrigator Needle Tips, Max-i-Probe-Style, Closed-End, 30 Ga, Purple, 100/Pk",
+            "category": "Irrigation",
+            "description": "Precision irrigator needle tips designed for effective subgingival irrigation. Max-i-Probe style with closed-end design. 30 gauge for optimal flow control. Purple color-coded, 100 per pack.",
+            "imageUrl": "/products/3.png",
+            "price": 12.99,
+            "oldPrice": 14.99,
+            "available": true,
+            "createdAt": "2025-10-18T16:45:00Z"
+        },
+        {
+            "id": 4,
+            "name": "Disposable Prophy Cups, Latch Type, Webbed, Medium Soft, 144/Pk",
+            "category": "Prophylaxis",
+            "description": "Convenient latch-type disposable prophylaxis cups with webbed interior for superior polishing. Medium soft composition provides comfortable patient experience. Economical 144-cup package.",
+            "imageUrl": "/products/4.png",
+            "price": 16.99,
+            "oldPrice": 19.99,
+            "available": false,
+            "createdAt": "2025-10-10T11:20:00Z"
+        },
+        {
+            "id": 5,
+            "name": "Safe Tip EZ Type Air/Water Tips, Metal Core, White, 1600/Pk",
+            "category": "Air Water Syringes",
+            "description": "Premium air/water syringe tips with metal core construction for durability. EZ Type design ensures secure fit and optimal performance. White color, bulk pack of 1600 tips.",
+            "imageUrl": "/products/5.png",
+            "price": 24.99,
+            "oldPrice": 29.99,
+            "available": true,
+            "createdAt": "2025-10-17T13:00:00Z"
+        },
+        {
+            "id": 6,
+            "name": "Dressing Pliers, Utility Pick-Up, # U17, 1/Pk",
+            "category": "Instruments",
+            "description": "Professional dressing pliers designed for precise material handling and placement. Utility pick-up style with #U17 tip configuration. High-quality stainless steel construction.",
+            "imageUrl": "/products/6.png",
+            "price": 24.99,
+            "oldPrice": 29.99,
+            "available": true,
+            "createdAt": "2025-10-08T10:30:00Z"
+        },
+        {
+            "id": 7,
+            "name": "Alcohol Dispenser, 9 oz, 1/Pk",
+            "category": "Anesthetics",
+            "description": "Convenient alcohol dispenser for maintaining sterile environment. 9-ounce capacity with easy-pump mechanism. Essential for infection control protocols in dental practice.",
+            "imageUrl": "/products/7.png",
+            "price": 9.99,
+            "oldPrice": 12.99,
+            "available": false,
+            "createdAt": "2025-10-14T15:45:00Z"
+        },
+        {
+            "id": 8,
+            "name": "Bitewing Tabs, Self-Adhesive, 500/Pk",
+            "category": "Radiography",
+            "description": "Self-adhesive bitewing tabs for secure film positioning during radiographic procedures. Easy application and removal. Bulk pack of 500 tabs for practice efficiency.",
+            "imageUrl": "/products/8.png",
+            "price": 14.99,
+            "oldPrice": 16.99,
+            "available": true,
+            "createdAt": "2025-10-16T08:15:00Z"
+        },
+        {
+            "id": 9,
+            "name": "Sticky Wraps Barrier Film Sheets, 4 x 6 in, Clear, 1200/Pk",
+            "category": "Irrigation",
+            "description": "Clear barrier film sheets with adhesive backing for surface protection. 4 x 6 inch size ideal for equipment and surface coverage. Maintains sterile environment, 1200 sheets per pack.",
+            "imageUrl": "/products/9.png",
+            "price": 19.99,
+            "oldPrice": 24.99,
+            "available": true,
+            "createdAt": "2025-10-19T12:00:00Z"
+        }
+    ]
+}

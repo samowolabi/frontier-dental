@@ -1,0 +1,91 @@
+@import url('https://fonts.cdnfonts.com/css/satoshi');
+@import "tailwindcss";
+
+#root {
+    font-family: "Satoshi", sans-serif;
+    font-optical-sizing: auto;
+}
+
+/* Custom Checkbox Styling */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 19px;
+    height: 19px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+    border-color: #9ca3af;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4da495;
+    border-color: #4da495;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(77, 164, 149, 0.2);
+}
+
+/* Custom Radio Button Styling */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+input[type="radio"]:hover {
+    border-color: #9ca3af;
+}
+
+input[type="radio"]:checked {
+    border-color: #4da495;
+    background-color: white;
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4da495;
+}
+
+input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(77, 164, 149, 0.2);
+}
+
+@media (prefers-reduced-motion: no-preference) {}
