@@ -10,7 +10,7 @@ export default function Header() {
         { name: "Categories", path: "#" },
     ]);
 
-    const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(true);
+    const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
     const [isSearchVisible, setIsSearchVisible] = useState(false);
     

@@ -1,13 +1,20 @@
+import { EditIcon, DeleteIcon } from "../shared/Icons";
 import type { ProductType } from "../../types/types";
 
 type AdminProductCardProps = {
     product: ProductType;
     onClick?: (product: ProductType) => void;
+    onDelete?: (productId: string) => void;
 };
 
-export default function AdminProductCard({ product, onClick }: AdminProductCardProps) {
+export default function AdminProductCard({ product, onClick, onDelete }: AdminProductCardProps) {
     const handleCardClick = () => {
         onClick?.(product);
+    };
+
+    const handleDeleteClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onDelete?.(product.id);
     };
 
     return (
@@ -33,13 +40,18 @@ export default function AdminProductCard({ product, onClick }: AdminProductCardP
                 </div>
 
                 <div className="absolute inset-0 bg-black/5 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-lg">
-                        <svg width={16} height={16} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#171717" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M16.04 3.02001L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.09 8.77 16.93L11.78 16.5C12.2 16.44 12.79 16.14 13.1 15.84L20.98 7.96001C22.34 6.60001 22.98 5.02001 20.98 3.02001C18.98 1.02001 17.4 1.66001 16.04 3.02001Z" stroke="#171717" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M14.91 4.1499C15.58 6.5399 17.45 8.4099 19.85 9.0899" stroke="#171717" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                        <span className="text-sm font-medium">Edit Product</span>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-3">
+                        <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors">
+                            <EditIcon width={14} height={14} />
+                            <span className="text-xs font-medium">Edit</span>
+                        </div>
+                        <div 
+                            className="flex items-center gap-2 bg-red-500 text-white px-3 py-2 rounded-lg shadow-lg hover:bg-red-600 transition-colors cursor-pointer"
+                            onClick={handleDeleteClick}
+                        >
+                            <DeleteIcon width={14} height={14} color="#FFFFFF" />
+                            <span className="text-xs font-medium">Delete</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { useProductContext } from "../../../contexts/productContext";
 import Modal from "../../../components/shared/Modal";
 import Buttons from "../../../components/shared/Buttons";
@@ -57,7 +58,7 @@ export function AddProduct({ isOpen, onClose, onSuccess }: AddProductProps) {
     const handleAddProduct = async () => {
         const validation = validateForm();
         if (!validation.isValid) {
-            alert(validation.errorMessage);
+            toast.error(validation.errorMessage || "Please check your form inputs");
             return;
         }
 
@@ -78,13 +79,13 @@ export function AddProduct({ isOpen, onClose, onSuccess }: AddProductProps) {
                 payload: { product: productWithId }
             });
 
-            alert("Product added successfully!");
+            toast.success("Product added successfully!");
             resetForm();
             onClose();
             onSuccess?.();
         } catch (error) {
             console.error("Error adding product:", error);
-            alert("An error occurred while adding the product.");
+            toast.error("An error occurred while adding the product.");
         } finally {
             setIsSubmitting(false);
         }
@@ -267,7 +268,7 @@ export function UpdateProduct({ isOpen, onClose, product, onSuccess }: UpdatePro
 
         const validation = validateForm();
         if (!validation.isValid) {
-            alert(validation.errorMessage);
+            toast.error(validation.errorMessage || "Please check your form inputs");
             return;
         }
 
@@ -285,12 +286,12 @@ export function UpdateProduct({ isOpen, onClose, product, onSuccess }: UpdatePro
                 payload: { product: updatedProduct }
             });
 
-            alert("Product updated successfully!");
+            toast.success("Product updated successfully!");
             onClose();
             onSuccess?.();
         } catch (error) {
             console.error("Error updating product:", error);
-            alert("An error occurred while updating the product.");
+            toast.error("An error occurred while updating the product.");
         } finally {
             setIsSubmitting(false);
         }
@@ -379,6 +380,82 @@ export function UpdateProduct({ isOpen, onClose, product, onSuccess }: UpdatePro
                             {isSubmitting ? "Updating..." : "Update Product"}
                         </Buttons.PrimaryButton>
                     </div>
+            </div>
+        </Modal>
+    );
+}
+
+// Delete Product Component
+type DeleteProductProps = {
+    isOpen: boolean;
+    onClose: () => void;
+    product: ProductType | null;
+    onSuccess?: () => void;
+};
+
+export function DeleteProduct({ isOpen, onClose, product, onSuccess }: DeleteProductProps) {
+    const { dispatch } = useProductContext();
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    // Handle Delete Product
+    const handleDeleteProduct = async () => {
+        if (!product) return;
+
+        setIsDeleting(true);
+
+        try {
+            // Remove product from context
+            dispatch({
+                type: "REMOVE_PRODUCT",
+                payload: { productId: product.id }
+            });
+
+            toast.success("Product deleted successfully!");
+            onClose();
+            onSuccess && onSuccess();
+        } catch (error) {
+            console.error("Error deleting product:", error);
+            toast.error("An error occurred while deleting the product.");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    return (
+        <Modal
+            open={isOpen}
+            setClose={onClose}
+        >
+            <div className="w-full max-w-md">
+                <div className="text-center">
+                    {/* Warning Icon */}
+                    <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+                        <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg>
+                    </div>
+
+                    <h2 className="text-lg font-semibold mb-2 text-gray-900">Delete Product</h2>
+                    
+                    <p className="text-sm text-gray-500 max-w-sm mb-6">
+                        Are you sure you want to delete <span className="font-medium text-gray-900">"{product?.name}"</span>? 
+                        This action cannot be undone.
+                    </p>
+
+                    <div className="flex justify-center gap-3">
+                        <Buttons.SecondaryButton onClick={onClose} disabled={isDeleting}>
+                            Cancel
+                        </Buttons.SecondaryButton>
+
+                        <button
+                            onClick={handleDeleteProduct}
+                            disabled={isDeleting}
+                            className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                            {isDeleting ? "Deleting..." : "Delete"}
+                        </button>
+                    </div>
+                </div>
             </div>
         </Modal>
     );

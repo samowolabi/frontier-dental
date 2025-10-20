@@ -4,20 +4,33 @@ import { fetchProducts } from "../../../services/api/products.api";
 import AdminProductCard from "../../../components/admin/AdminProductCard";
 import { LoadingSkeleton } from "../../../components/shared/LoadingSkeleton";
 import Buttons from "../../../components/shared/Buttons";
-import { AddProduct, UpdateProduct } from "./AddUpdateProduct";
+import { AddProduct, UpdateProduct, DeleteProduct } from "./AddUpdateDeleteProduct";
 import type { ProductType } from "../../../types/types";
 
 
 export default function AdminProductManagement() {
     const { productState, dispatch } = useProductContext();
+    
     const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
     const [isUpdateProductModalOpen, setIsUpdateProductModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    
     const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
+    const [productToDelete, setProductToDelete] = useState<ProductType | null>(null);
 
     // Handle product click for editing
     const handleProductClick = (product: ProductType) => {
         setSelectedProduct(product);
         setIsUpdateProductModalOpen(true);
+    };
+
+    // Handle product deletion
+    const handleProductDelete = (productId: string) => {
+        const product = productState.products.find(p => p.id === productId);
+        if (product) {
+            setProductToDelete(product);
+            setIsDeleteModalOpen(true);
+        }
     };
 
     // Fetch products on component mount and update context
@@ -76,6 +89,7 @@ export default function AdminProductManagement() {
                                         key={product.id} 
                                         product={product} 
                                         onClick={handleProductClick}
+                                        onDelete={handleProductDelete}
                                     />
                                 ))}
                             </div>
@@ -105,6 +119,20 @@ export default function AdminProductManagement() {
                 onSuccess={() => {
                     console.log("Product updated successfully");
                     setSelectedProduct(null);
+                }}
+            />
+
+            {/* Delete Product Modal */}
+            <DeleteProduct
+                isOpen={isDeleteModalOpen}
+                onClose={() => {
+                    setIsDeleteModalOpen(false);
+                    setProductToDelete(null);
+                }}
+                product={productToDelete}
+                onSuccess={() => {
+                    console.log("Product deleted successfully");
+                    setProductToDelete(null);
                 }}
             />
         </section>
