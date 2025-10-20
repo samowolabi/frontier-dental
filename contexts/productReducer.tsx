@@ -16,8 +16,8 @@ export const productReducer = (state: ProductStateTypes, action: ProductActionTy
         }
         case "ADD_PRODUCT": {
             return {
-                ...state,
-                products: [...state.products, action.payload.product],
+            ...state,
+            products: [action.payload.product, ...state.products],
             };
         }
         case "UPDATE_PRODUCT": {
