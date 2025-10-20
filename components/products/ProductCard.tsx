@@ -1,5 +1,5 @@
 import type { ProductType } from "../../types/types";
-import { CartIcon, BagIcon, EyeIcon, HeartIcon } from "../shared/Icons";
+import { BagIcon, EyeIcon, HeartIcon } from "../shared/Icons";
 
 export default function ProductCard({ product }: { product: ProductType }) {
     return (
